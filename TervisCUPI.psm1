@@ -1,4 +1,6 @@
-﻿Function Invoke-TervisCUCTerminateVM {
+﻿#Requires -Modules CUPIPowerShell
+
+Function Invoke-TervisCUCTerminateVM {
     param (
           $Alias
     )
