@@ -1,5 +1,10 @@
 ﻿#Requires -Modules CUPIPowerShell
 
+function Install-TervisCUPI {
+    Set-CUPIRootAPIURL -RootAPIURL "https://ter-cuc-pub1/vmrest"
+    New-TervisCUCCredential
+}
+
 Function Invoke-TervisCUCTerminateVM {
     param (
           $Alias
@@ -12,12 +17,6 @@ Function Invoke-TervisCUCTerminateVM {
     #Remove-CUPIUser
 }
 
-function New-TervisCUCCredential {
-    $CUCCredentialFromPasswordState = Get-PasswordstateCredential -PasswordstateListAPIKey (Get-PasswordStateAPIKey) -PasswordID 15
-    $CUCUsername = $CUCCredentialFromPasswordState.UserName
-    $CUCPassword = $CUCCredentialFromPasswordState.Password
-    $CUCCredentialObject = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $CUCUsername, $CUCPassword
-    
-    New-CUCCredential -CUCCredential $CUCCredentialObject
-
+function New-TervisCUCCredential {    
+    New-CUCCredential -CUCCredential $(Get-PasswordstateCredential -PasswordID 15)
 }
