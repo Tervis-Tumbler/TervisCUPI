@@ -10,11 +10,11 @@ Function Invoke-TervisCUCTerminateVM {
           $Alias
     )
 
-    $CUPIUser = Find-CUPIUserByAlias -Alias $Alias 
-    $RemoveCUPIUserResult = $CUPIUser |  Remove-CUPIUser
-
-    #$RemoveCUPIUserResult = Find-CUPIUserByAlias -Alias test |
-    #Remove-CUPIUser
+    $CUPIUser = Find-CUPIUserByAlias -Alias $Alias -ErrorAction SilentlyContinue
+    if ($CUPIUser) {
+        $RemoveCUPIUserResult = $CUPIUser |  Remove-CUPIUser
+        $RemoveCUPIUserResult
+    }
 }
 
 function New-TervisCUCCredential {    
