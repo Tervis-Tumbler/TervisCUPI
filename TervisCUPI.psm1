@@ -18,5 +18,5 @@ Function Invoke-TervisCUCTerminateVM {
 }
 
 function New-TervisCUCCredential {    
-    New-CUCCredential -CUCCredential $(Get-PasswordstateCredential -PasswordID 15)
+    New-CUCCredential -CUCCredential $(Get-PasswordstatePassword -AsCredential -ID 15)
 }
